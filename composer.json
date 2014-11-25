@@ -1,0 +1,23 @@
+{
+    "name": "knagg0/process-promises",
+    "type": "library",
+    "description": "With this library you can use Symfony Process Component processes with a jQuery Promise like promise pattern.",
+    "keywords": ["php", "process", "promise"],
+    "homepage": "https://github.com/knagg0/process-promises/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marcel Frank",
+            "email": "knagg0@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/process": ">=2.2"
+    },
+    "autoload": {
+        "psr-4" : {
+            "Knagg0\\ProcessPromises\\" : "src/Knagg0/ProcessPromises"
+        }
+    }
+}
