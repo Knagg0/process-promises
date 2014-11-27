@@ -12,14 +12,12 @@ class When extends Promise
     public function __construct($promises)
     {
         $results = array();
-        $isRejected = false;
 
         foreach ($promises as $promise) {
             $promise->fail(
                 function ($reason) use (&$isRejected) {
-                    if ($isRejected === false) {
+                    if ($this->isRejected() === false) {
                         $this->reject($reason);
-                        $isRejected = true;
                     }
                 }
             );

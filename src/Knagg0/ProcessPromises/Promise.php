@@ -4,6 +4,15 @@ namespace Knagg0\ProcessPromises;
 
 class Promise
 {
+    const STATE_PENDING = 'pending';
+    const STATE_RESOLVED = 'resolved';
+    const STATE_REJECTED = 'rejected';
+
+    /**
+     * @var string
+     */
+    protected $state = self::STATE_PENDING;
+
     /**
      * @var callable[]
      */
@@ -112,6 +121,7 @@ class Promise
         foreach ($this->failCallbacks as $failCallback) {
             $failCallback($reason);
         }
+        $this->state = self::STATE_REJECTED;
 
         return $this;
     }
@@ -128,6 +138,7 @@ class Promise
         foreach ($this->doneCallbacks as $doneCallback) {
             $doneCallback($result);
         }
+        $this->state = self::STATE_RESOLVED;
 
         return $this;
     }
@@ -147,5 +158,35 @@ class Promise
         }
 
         return $this;
+    }
+
+    /**
+     * Determine the current state of a promise object
+     *
+     * @return string
+     */
+    public function state()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Determine whether a promise object has been resolved
+     *
+     * @return bool
+     */
+    public function isResolved()
+    {
+        return ($this->state === self::STATE_RESOLVED);
+    }
+
+    /**
+     * Determine whether a promise object has been rejected
+     *
+     * @return bool
+     */
+    public function isRejected()
+    {
+        return ($this->state === self::STATE_REJECTED);
     }
 }

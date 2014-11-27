@@ -65,7 +65,7 @@ class WhenTest extends \PHPUnit_Framework_TestCase
 
         $promise1->resolve('foo');
         $promise2->reject('bar');
-        $promise3->resolve('foobar');
+        $promise3->reject('foobar');
         $promise4->resolve('barfoo');
 
         $this->assertCount(0, $results);

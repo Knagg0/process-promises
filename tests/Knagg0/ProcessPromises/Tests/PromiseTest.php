@@ -128,4 +128,27 @@ class PromiseTest extends \PHPUnit_Framework_TestCase
             $updates
         );
     }
+
+    public function testState()
+    {
+        $promise1 = new Promise();
+        $promise2 = new Promise();
+        $promise3 = new Promise();
+
+        $promise2->resolve('foo');
+        $promise3->reject('bar');
+
+        $this->assertSame(Promise::STATE_PENDING, $promise1->state());
+        $this->assertSame(Promise::STATE_RESOLVED, $promise2->state());
+        $this->assertSame(Promise::STATE_REJECTED, $promise3->state());
+
+        $this->assertFalse($promise1->isResolved());
+        $this->assertFalse($promise1->isRejected());
+
+        $this->assertTrue($promise2->isResolved());
+        $this->assertFalse($promise2->isRejected());
+
+        $this->assertFalse($promise3->isResolved());
+        $this->assertTrue($promise3->isRejected());
+    }
 }

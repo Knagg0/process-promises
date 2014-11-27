@@ -1,7 +1,7 @@
 {
     "name": "knagg0/process-promises",
     "type": "library",
-    "description": "With this library you can use Symfony Process Component processes with a jQuery Promise like promise pattern.",
+    "description": "With this library you can use Symfony Process Component processes with a jQuery like promise pattern.",
     "keywords": ["php", "process", "promise"],
     "homepage": "https://github.com/knagg0/process-promises/",
     "license": "MIT",
